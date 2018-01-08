@@ -1,3 +1,3 @@
-# Online_judge_Solutions
+# Online judge Solutions
 
-All the codes are written by me
+# All the codes are written by me
