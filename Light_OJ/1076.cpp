@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #define le 1003
-
 using namespace std;
 int n[le];
 
@@ -15,7 +14,6 @@ int fnc1(int mid, int len){
     }
     return c;
 }
-
 int fnc(int hi, int lo, int len, int can){
     int mid, ans;
     while(lo <= hi){
@@ -28,7 +26,6 @@ int fnc(int hi, int lo, int len, int can){
     }
     return ans;
 }
-
 int main(){
     int t, co = 0, len, can;
     for(scanf("%d", &t); t--; ){
