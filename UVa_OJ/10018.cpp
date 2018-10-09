@@ -15,7 +15,7 @@ int main(){
         scanf("%lld", &a);
         ll c = 0;
         while(fnc(a)) c++;
-        printf("%lld %lld\n", c, ans);
+        printf("%lld %lld\n", c, ans); // :)
     }
     return 0;
 }
