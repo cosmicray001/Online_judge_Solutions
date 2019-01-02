@@ -1,21 +1,30 @@
 #include <bits/stdc++.h>
 #define ll long long int
-#define le 100000008
-#define read freopen("input.txt", "r", stdin);
-#define write freopen("output.txt", "w", stdout);
-ll ans;
 using namespace std;
-bool fnc(ll a){
-
+ll rev;
+bool ck(ll a){
+    ll temp = a;
+    for(; temp > 0; temp /= 10) rev = (rev * 10) + (temp % 10);
+    return (rev == a);
 }
 int main(){
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
     int t;
-    ll a, sum;
+    ll a;
     for(scanf("%d", &t); t--; ){
         scanf("%lld", &a);
-        ll c = 0;
-        while(fnc(a)) c++;
-        printf("%lld %lld\n", c, ans); // :)
+        ll c = 1;
+        rev = 0;
+        bool f = ck(a);
+        a += rev;
+        rev = 0;
+        while(!ck(a)){
+            c++;
+            a += rev;
+            rev = 0;
+        }
+        printf("%d %lld\n", c, a);
     }
     return 0;
 }
