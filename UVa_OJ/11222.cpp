@@ -1,56 +1,55 @@
 #include <bits/stdc++.h>
-#define le 10004
 using namespace std;
-int n[le];
 int main(){
-    //freopen("input.txt", "r", stdin);
-    //freopen("output.txt", "w", stdout);
-    int t, co = 0, len1, len2, len3, x;
-    for(scanf("%d", &t); t--; ){
-        for(int i = 0; i < le; n[i] = 0, i++);
-        int a = 0, b = 0, c = 0;
-        set<int> st1;
-        set<int> st2;
-        set<int> st3;
-        set<int> :: iterator it;
-        scanf("%d", &len1);
-        for(int i = 0; i < len1; i++){
-            scanf("%d", &x);
-            st1.insert(x);
-        }
-        for(it = st1.begin(); it != st1.end(); n[*it]++, it++);
-        scanf("%d", &len2);
-        for(int i = 0; i < len2; scanf("%d", &x), st2.insert(x), i++);
-        for(it = st1.begin(); it != st2.end(); n[*it]++, it++);
-        scanf("%d", &len3);
-        for(int i = 0; i < len3; scanf("%d", &x), st3.insert(x), i++);
-        for(it = st3.begin(); it != st3.end(); n[*it]++, it++);
-        int ans;
-        if(c > a && c > b) ans = 3;
-        else if(b > a && b > c) ans = 2;
-        else ans = 1;
-        printf("Case #%d:\n", ++co);
-        if(ans == 1){
-            printf("%d %d", ans, a);
-            for(it = st1.begin(); it != st1.end(); it++){
-                if(n[*it] == 1) printf(" %d", *it);
-            }
-            printf("\n");
-        }
-        else if(ans == 2){
-            printf("%d %d", ans, b);
-            for(it = st2.begin(); it != st2.end(); it++){
-                if(n[*it] == 1) printf(" %d", *it);
-            }
-            printf("\n");
-        }
-        else{
-            printf("%d %d", ans, c);
-            for(it = st3.begin(); it != st3.end(); it++){
-                if(n[*it] == 1) printf(" %d", *it);
-            }
-            printf("\n");
-        }
+  freopen("input.txt", "r", stdin);
+  freopen("output.txt", "w", stdout);
+  int t, co = 0, a, b, c, len;
+  for(scanf("%d", &t); t--; ){
+    map<int, int> mp;
+    set<int> st1;
+    set<int> st2;
+    set<int> st3;
+    scanf("%d", &len);
+    while(len--){
+      scanf("%d", &a);
+      st1.insert(a);
+      mp[a]++;
     }
-    return 0;
+    scanf("%d", &len);
+    while(len--){
+      scanf("%d", &a);
+      if(!mp[a]){
+        st2.insert(a);
+        mp[a]++;
+      }
+      else st1.erase(a);
+    }
+    scanf("%d", &len);
+    while(len--){
+      scanf("%d", &a);
+      if(!mp[a]) st3.insert(a);
+      else if(st1.count(a)) st1.erase(a);
+      else if(st2.count(a)) st2.erase(a);
+    }
+    a = st1.size();
+    b = st2.size();
+    c = st3.size();
+    printf("Case #%d:\n", ++co);
+    if(a >= b && a >= c){
+      printf("1 %d", a);
+      for(set<int> :: iterator it = st1.begin(); it != st1.end(); printf(" %d", (*it)), it++);
+      printf("\n");
+    }
+    if(b >= c && b >= a){
+      printf("2 %d", b);
+      for(set<int> :: iterator it = st2.begin(); it != st2.end(); printf(" %d", (*it)), it++);
+      printf("\n");
+    }
+    if(c >= a && c >= b){
+      printf("3 %d", c);
+      for(set<int> :: iterator it = st3.begin(); it != st3.end(); printf(" %d", (*it)), it++);
+      printf("\n");
+    }
+  }
+  return 0;
 }
