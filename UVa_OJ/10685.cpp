@@ -1,45 +1,39 @@
 #include <bits/stdc++.h>
-#define le 5003
+#define le 1000006
 using namespace std;
 int p[le], r[le];
-int fin(int a){
+int fnc(int a){
   if(p[a] == a) return a;
-  p[a] = fin(p[a]);
-  return p[a];
-}
-void uni(int a, int b){
-  int x = fin(a);
-  int y = fin(y);
-  if(x != y){
-    p[y] = x;
-    r[x] += r[y];
-  }
+  return p[a] = fnc(p[a]);
 }
 int main(){
   //freopen("input.txt", "r", stdin);
   //freopen("output.txt", "w", stdout);
-  int col, row;
-  char ch[35];
-  while(scanf("%d %d", &col, &row) != EOF && col && row){
+  int n, m;
+  string a, b;
+  while(scanf("%d %d", &n, &m) != EOF && (n || m)){
     map<string, int> mp;
-    memset(r, 0, sizeof(r));
     memset(p, 0, sizeof(p));
-    for(int i = 0; i < col; i++){
-      scanf("%s", ch);
-      mp[ch] = i;
+    memset(r, 0, sizeof(r));
+    for(int i = 0; i < n; i++){
+      cin >> a;
+      mp[a] = i;
       p[i] = i;
       r[i] = 1;
     }
-    for(int i = 0; i < row; i++){
-      scanf("%s", ch);
-      int x = mp[ch];
-      scanf("%s", ch);
-      int y = mp[ch];
-      uni(x, y);
+    for(int i = 0; i < m; i++){
+      cin >> a >> b;
+      int x = fnc(mp[a]), y = fnc(mp[b]);
+      if(x != y){
+        if(x > y) swap(x, y);
+        p[y] = x;
+        r[x] += r[y];
+      }
     }
     int ans = 0;
-    for(int i = 0; i < col; i++) ans = max(ans, r[i]);
+    for(int i = 0; i < n; i++) ans = max(ans, r[i]);
     printf("%d\n", ans);
+    mp.clear();
   }
   return 0;
 }
