@@ -2,8 +2,8 @@
 #define le 52
 using namespace std;
 char n[le][le];
-bool vis[le][le];
-bool ck[le][le];
+bool vis[le][le], ck[le][le];
+map<int, bool> mp;
 int ve[le][le];
 int fx[] = {1, -1, 0, 0};
 int fy[] = {0, 0, 1, -1};
@@ -32,13 +32,15 @@ bool fnc(int a, int b, int r, int c){
   for(int i = 0; i < 4; i++){
     int py = fy[i] + a;
     int px = fx[i] + b;
-    if(py >= 0 && py < r && px >= 0 && px < c && n[py][px] == 'X' && ve[py][px] == ve[a][b]) return false;
+    if(py >= 0 && py < r && px >= 0 && px < c && n[py][px] == 'X' && mp[ve[py][px]] == true) return false;
   }
+  mp[ve[a][b]] = true;
   return true;
 }
 void bfs(int a, int b, int r, int c){
   vis[a][b] = true;
   int co = 1;
+  mp[ve[a][b]] = true;
   queue<pair<int, int> > q;
   q.push(make_pair(a, b));
   while(!q.empty()){
@@ -50,10 +52,7 @@ void bfs(int a, int b, int r, int c){
       if(py >= 0 && py < r && px >= 0 && px < c && vis[py][px] == false && (n[py][px] == 'X' || n[py][px] == '*')){
         vis[py][px] = true;
         if(n[py][px] == 'X'){
-          if(fnc(py, px, r, c)){
-            co++;
-            printf("%d %d\n", py, px);
-          }
+          if(fnc(py, px, r, c)) co++;
         }
         q.push(make_pair(py, px));
       }
@@ -62,7 +61,7 @@ void bfs(int a, int b, int r, int c){
   ct.push_back(co);
 }
 int main(){
-  freopen("input.txt", "r", stdin);
+  //freopen("input.txt", "r", stdin);
   //freopen("output.txt", "w", stdout);
   string s;
   int r, c, co = 0;
@@ -89,7 +88,7 @@ int main(){
     printf("Throw %d\n", ++co);
     for(int i = 0; i < ct.size() - 1; i++) printf("%d ", ct[i]);
     printf("%d\n\n", ct[ct.size() - 1]);
-    printf("%d %d\n", ve[0][4], ve[0][1]);
+    mp.clear();
     ct.clear();
     v.clear();
   }
