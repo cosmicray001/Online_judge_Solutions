@@ -1,27 +1,16 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-bool fnc(int n)
-{
-  int temp = n;
-  int rev = 0;
-  while(temp > 0){
-    rev = (rev * 10) + (temp % 10);
-    temp /= 10;
-  }
-  return rev == n;
+bool fnc(int a){
+    int re = 0, t = a;
+    for(; t > 0; t /= 10) re = re * 10 + t % 10;
+    if(re == a) return 1;
+    return 0;
 }
-
-int main()
-{
-  int t, c = 0, num;
-  scanf("%d", &t);
-  while(t--){
-    scanf("%d", &num);
-    bool f = fnc(num);
-    printf("Case %d: %s\n", ++c, f ? "Yes" : "No");
-  }
-  
-  return 0;
+int main(){
+    int t, co = 0, a;
+    for(scanf("%d", &t); t--; ){
+        scanf("%d", &a);
+        printf("Case %d: %s\n", ++co, fnc(a) ? "Yes" : "No");
+    }
+    return 0;
 }

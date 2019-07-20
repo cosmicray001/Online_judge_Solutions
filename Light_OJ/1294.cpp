@@ -1,25 +1,12 @@
-
 #include <bits/stdc++.h>
- 
+#define ll long long int
 using namespace std;
- 
-long long int fnc(long long int n, long long int m)
-{
-  long long int x = n / 2;
-  long long int ans = x * m;
-  return ans;
-}
- 
-int main()
-{
-  int t, c = 0;
-  scanf("%d", &t);
-  long long int m, n;
-  while(t--){
-    scanf("%lld %lld", &n, &m);
-    long long int x = fnc(n, m);
-    printf("Case %d: %lld\n", ++c, x);
-  }
- 
-  return 0;
+int main(){
+    int t, co = 0;
+    ll a, b;
+    for(scanf("%d", &t); t--; ){
+        scanf("%lld %lld", &a, &b);
+        printf("Case %d: %lld\n", ++co, (a >> 1) * b);
+    }
+    return 0;
 }

@@ -1,34 +1,22 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-int re_fnc(int a, int b)
-{
+int fnc(int a, int b){
     if(a > b) swap(a, b);
     if(a == 1) return b;
-    else if(a == 2){
-        if(b % 4 == 1) return b + 1;
-        else if(b % 4 == 2) return b + 2;
-        else if(b % 4 == 3) return b + 1;
-        else if(b % 4 == 0) return b;
+    if(a == 2){
+        a = b % 4;
+        if(a == 3) a = 1;
+        return b + a;
     }
-    else{
-        int x =(a * b) / 2;
-        if(a * b % 2 != 0) x++;
-        return x;
-    }
+    return ceil(a * b / 2.0);
 }
-
-int main()
-{
-    int t, c = 0;
-    int x, y;
-    scanf("%d", &t);
-    while(t--){
-        scanf("%d %d", &x, &y);
-        int ans = re_fnc(x, y);
-        printf("Case %d: %d\n", ++c, ans);
+int main(){
+    //freopen("input.txt", "r", stdin);
+    //freopen("output.txt", "w", stdout);
+    int t, co = 0, a, b;
+    for(scanf("%d", &t); t--; ){
+        scanf("%d %d", &a, &b);
+        printf("Case %d: %d\n", ++co, fnc(a, b));
     }
-
     return 0;
 }
