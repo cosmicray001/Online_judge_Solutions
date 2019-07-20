@@ -1,22 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-int d;
-void fnc(string s){
-  if(d)
-}
 int main(){
-  double sum, avg, c;
-  int len, co = 0;
-  for(scanf("%d", &len); len--; ){
+  //freopen("input.txt", "r", stdin);
+  //freopen("output.txt", "w", stdout);
+  int t, co = 0;
+  double a, sum;
+  for(scanf("%d", &t); t--; ){
     sum = 0.0;
-    for(int i = 0; i < 12; scanf("%lf", &c), sum += c, i++);
+    for(int i = 0; i < 12; scanf("%lf", &a), sum += a, i++);
     sum /= 12.0;
-    d = 0;
+    int x = (int) sum, c = 0;
     string s = "";
-    s += (int) sum;
+    for(; x > 0; x /= 10){
+      c++;
+      s += ((x % 10) + '0');
+      if(c % 3 == 0 && x > 9) s += ',';
+    }
     printf("%d $", ++co);
-    fnc(s);
-    printf("%.2lf\n", sum - (int)sum);
+    sum = (sum - (int)sum) * 100;
+    for(int i = s.size() - 1; i >= 0; printf("%c", s[i]), i--);
+    if(sum < 10) printf(".0%.0lf\n", sum);
+    else printf(".%.0lf\n", sum);
   }
   return 0;
 }
