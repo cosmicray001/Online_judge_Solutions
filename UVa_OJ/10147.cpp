@@ -1,74 +1,74 @@
 #include <bits/stdc++.h>
-//#define le 562505
-#define le 100005
+#define le 755
 using namespace std;
-int p[le];
 struct edge{
-  double x, y, w;
+  int x, y;
+  double w;
 };
 bool comp(edge a, edge b){
   return a.w < b.w;
 }
+edge arr[le * le];
+int p[le], r[le];
+double h1[le], h2[le];
+bool ck[le][le];
 int fnc(int a){
   if(p[a] == a) return a;
   return p[a] = fnc(p[a]);
 }
-double dis(double a, double b, double x, double y){
-  a = (a - x) * (a - x);
-  b = (b - y) * (b - y);
+double dis(double a, double b, double aa, double bb){
+  a = (a - aa) * (a - aa);
+  b = (b - bb) * (b - bb);
   return sqrt(a + b);
 }
-vector<pair<double, double> > v;
 int main(){
   freopen("input.txt", "r", stdin);
-  int t, co = 0, n, m, x1, y1;
-  double a, b;
+  freopen("output.txt", "w", stdout);
+  int t, len, q, a, b;
   for(scanf("%d", &t); t--; ){
-    if(co++) printf("\n");
-    scanf("%d", &n);
-    for(int i = 0; i < n + 1; p[i] = 1, i++);
-    for(int i = 0; i < n; i++){
-      scanf("%lf %lf", &a, &b);
-      v.push_back(make_pair(a, b));
+    scanf("%d", &len);
+    for(int i = 1; i < len + 1; scanf("%lf %lf", &h1[i], &h2[i]), i++);
+    scanf("%d", &q);
+    int co = 0, e = 0;
+    for(int i = 0; i < le; p[i] = i, r[i] = 1, i++) for(int j = 0; j < le; ck[i][j] = false, j++);
+    for(int i = 0; i < q; i++){
+      scanf("%d %d", &a, &b);
+      co++;
+      ck[a][b] = true;
+      ck[b][a] = true;
     }
-    edge arr[le];
-    int l = 1;
-    for(int i = 0; i < n; i++){
-      for(int j = 0; j < n; j++){
-        if(i != j){
-          double d = dis(v[i].first, v[i].second, v[j].first, v[j].second);
-          arr[l].x = i + 1;
-          arr[l].y = j + 1;
-          arr[l].w = d;
-          l++;
+    edge eg;
+    for(int i = 1; i < len; i++){
+      for(int j = i + 1; j < len + 1; j++){
+        if(ck[i][j]) eg.w = 0.0;
+        else eg.w = dis(h1[i], h2[i], h1[j], h2[j]);
+        eg.x = i;
+        eg.y = j;
+        arr[e++] = eg;
+      }
+    }
+    if(co == len - 1) printf("No new highways need\n");
+    else{
+      sort(arr, arr + e, comp);
+      //for(int i = 0; i < e; i++) printf("%d ----- %d ---> %lf\n", arr[i].x, arr[i].y, arr[i].w);
+      for(int i = 0; i < e; i++){
+        a = fnc(arr[i].x);
+        b = fnc(arr[i].y);
+        if(a != b){
+          co++;
+          if(r[a] >= r[b]){
+            r[a] += r[b];
+            p[b] = a;
+          }
+          else{
+            r[b] += r[a];
+            p[a] = b;
+          }
+          if(!ck[arr[i].x][arr[i].y])printf("%d %d\n", arr[i].x, arr[i].y);
         }
       }
     }
-    scanf("%d", &m);
-    for(int i = 0; i < m; i++){
-      scanf("%d %d", &x1, &y1);
-      x1 = fnc(x1);
-      y1 = fnc(y1);
-      if(x1 > y1) swap(x1, y1);
-      p[y1] = x1;
-    }
-    sort(arr, arr + l, comp);
-    vector<pair<int, int> > st;
-    double sum = 0;
-    for(int i = 0; i < l; i++){
-      int a1 = fnc(arr[i].x);
-      int b1 = fnc(arr[i].y);
-      if(a1 != b1){
-        st.push_back(make_pair(arr[i].x, arr[i].y));
-        if(a1 > b1) swap(a1, b1);
-        p[b1] = a1;
-      }
-    }
-    sort(st.begin(), st.end());
-    for(int i = 0; i < st.size() - 1; i++) printf("%d %d\n", st[i].first, st[i].second);
-    printf("%d %d\n", st[st.size() - 1].first, st[st.size() - 1].second);
-    v.clear();
+    if(t) printf("\n");
   }
   return 0;
 }
-
