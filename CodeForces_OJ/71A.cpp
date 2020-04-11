@@ -1,23 +1,13 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-int main()
-{
-    int t;
-    string ss;
-    scanf("%d", &t);
-    getline(cin, ss);
-
-    for(int i = 0; i < t; i++){
-        getline(cin, ss);
-
-        int len = ss.size();
-
-        if(len <= 10) cout<<ss<<endl;
-        else printf("%c%d%c\n", ss[0], len - 2, ss[len - 1]);
-
-    }
-
-    return 0;
+int main(){
+  //freopen("input.txt", "r", stdin);
+  int t;
+  string s;
+  for(scanf("%d", &t); t--; ){
+    cin >> s;
+    if(s.size() <= 10) cout << s << endl;
+    else cout << s[0] << (s.size() - 2) << s[s.size() - 1] << endl;
+  }
+  return 0;
 }

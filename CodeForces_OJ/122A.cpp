@@ -1,23 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> v;
 bool fnc(int a){
-  for(; a > 0; a /= 10){
-    int t = a % 10;
-    if(t != 7 && t != 4) return false;
-  }
+  for(; a > 0; a /= 10) if(a % 10 != 4 && a % 10 != 7) return false;
   return true;
 }
 int main(){
   int a;
-  scanf("%d", &a);
-  for(int i = a; i > 0; i--) if(a % i == 0) v.push_back(i);
-  for(int i = 0; i < v.size(); i++){
-    if(fnc(v[i])){
-      printf("YES\n");
-      return 0;
+  bool f = false;
+  cin >> a;
+  for(int i = 1; i < sqrt(a) + 1 && f == false; i++){
+    if(a % i == 0){
+      if(fnc(i)) f = true;
+      if(fnc(a / i)) f = true;
     }
   }
-  printf("NO\n");
+  printf("%s\n", f ? "YES" : "NO");
   return 0;
 }

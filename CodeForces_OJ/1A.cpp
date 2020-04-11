@@ -1,14 +1,9 @@
-#include<bits/stdc++.h>
-
+#include <bits/stdc++.h>
+#define ll long long int
 using namespace std;
-
-int main(void)
-{
-    double n, m, a;
-    while(scanf("%lf%lf%lf",&n,&m,&a) != EOF){
-        double l1 = ceil(n / a);
-        double l2 = ceil(m / a);
-        printf("%.0lf\n",l1 * l2);
-    }
-    return 0;
+int main(){
+  ll n, m, a;
+  cin >> n >> m >> a;
+  printf("%lld\n", ((n + a - 1) / a) * ((m + a - 1) / a));
+  return 0;
 }

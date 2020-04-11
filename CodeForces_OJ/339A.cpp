@@ -1,18 +1,21 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-int main()
-{
-    string s;
-    int n[110];
-    getline(cin, s);
-    int len = s.size(), j = 0;
-    for(int i = 0; i < len; i += 2, j++) n[j] = s[i] - '0';
-    int len1 = (len / 2) + 1;
-    sort(n, n + len1);
-    for(int i = 0, j = 0; i < len; i += 2, j++) s[i] = n[j] + '0';
-    cout << s << endl;
-
-    return 0;
+int n[5];
+int main(){
+  //freopen("input.txt", "r", stdin);
+  string s;
+  cin >> s;
+  for(int i = 0; i < s.size(); i++){
+    if(s[i] != '+') n[s[i] - '0']++;
+  }
+  bool f = false;
+  for(int i = 1; i < 3 + 1; i++){
+    while(n[i]--){
+      if(f) printf("+");
+      f = true;
+      printf("%d", i);
+    }
+  }
+  printf("\n");
+  return 0;
 }

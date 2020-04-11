@@ -1,22 +1,14 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-int main()
-{
-  char ch[110];
-  scanf("%s", &ch);
-  int len = strlen(ch);
-  bool f = false;
-  for(int i = 0; i < len; i++){
-    if(ch[i] == 'H' || ch[i] == 'Q' || ch[i] == '9')
-    {
-      f = true;
-      break;
+int main(){
+  string s;
+  cin >> s;
+  for(int i = 0; i < s.size(); i++){
+    if(s[i] == 'H' || s[i] == 'Q' || s[i] == '9'){
+      printf("YES\n");
+      return 0;
     }
   }
-  if(f == false) printf("NO\n");
-  else printf("YES\n");
-  
+  printf("NO\n");
   return 0;
 }

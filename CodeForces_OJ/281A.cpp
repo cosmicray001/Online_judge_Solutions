@@ -1,17 +1,13 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-
-int main()
-{
+int main(){
+  //freopen("input.txt", "r", stdin);
+  char ch;
   string s;
-  getline(cin, s);
-  char ch[2];
-  if(s[0] >= 'a' && s[0] <= 'z'){
-    ch[0] = s[0] - 'a' + 'A';
-    s[0] = ch[0];
-  }
+  scanf("%c", &ch);
+  cin >> s;
+  if(ch >= 'a' && ch <= 'z') printf("%c", ch - 'a' + 'A');
+  else printf("%c", ch);
   cout << s << endl;
-  
   return 0;
 }
