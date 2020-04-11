@@ -1,17 +1,14 @@
 #include <bits/stdc++.h>
-#define ll long long
+#define ll long long int
 using namespace std;
-int fnc(string s){
-    int len = s.size(), sum = 0;
-    for(int i = 0; i < len; i++) sum += s[i] - '0';
-    return sum;
-}
 int main(){
     int t;
     string s;
     for(scanf("%d", &t), getline(cin, s); t--; ){
         getline(cin, s);
-        printf("%d\n", fnc(s));
+        ll sum = 0;
+        for(int i = 0; i < s.size(); i++) sum += s[i] - '0';
+        printf("%lld\n", sum);
     }
     return 0;
 }

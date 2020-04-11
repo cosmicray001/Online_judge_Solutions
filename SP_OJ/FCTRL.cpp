@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
- 
+
 using namespace std;
 int fnc(int a){
     a /= 5;
