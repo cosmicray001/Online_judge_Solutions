@@ -1,6 +1,6 @@
 # Specialized Skills Badges
 - [HackerRank SQL Practice Problem](https://www.hackerrank.com/domains/sql?filters%5Bstatus%5D%5B%5D=unsolved&badge_type=sql)
-
+- [My profile cosmicray001](https://www.hackerrank.com/cosmicray001)
 | SQL - BADGE LEVEL      | POINTS NEEDED |
 | ---------------------- | ------------- |
 | 1 Star - Bronze        | 80       |
